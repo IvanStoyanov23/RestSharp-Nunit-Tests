@@ -18,7 +18,7 @@ namespace RestSharp_Nunit_Test
 			//Arrange
 			var options = new RestClientOptions("https://api.github.com")
 			{
-				Authenticator = new HttpBasicAuthenticator("ivanstoyanov23", "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")
+				Authenticator = new HttpBasicAuthenticator("ivanstoyanov23", "ADD TOKEN HERE")
 			};
 
 			var client = new RestClient(options);
