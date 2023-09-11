@@ -13,6 +13,32 @@ namespace RestSharp_Nunit_Test
 		}
 
         [Test]
+		public async Task POST_GitHub_Issue()
+		{
+			//Arrange
+			var options = new RestClientOptions("https://api.github.com")
+			{
+				Authenticator = new HttpBasicAuthenticator("ivanstoyanov23", "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")
+			};
+
+			var client = new RestClient(options);
+
+			var request = new RestRequest("/repos/ivanstoyanov23/GitHub-Homework/issues");
+
+			//Act
+			request.AddBody(new { title = "New issue from RestSharp 6" });
+
+			var response = await client.ExecuteAsync(request, Method.Post);
+
+
+			//Assert
+			Console.WriteLine("Status Code: " + response.StatusCode);
+			Console.WriteLine("Body: " + response.Content);
+
+			Assert.That((int)response.StatusCode, Is.EqualTo(201));
+		}
+
+		[Test]
         public void GET_GitHub_Repos()
         {
             //Arrange
